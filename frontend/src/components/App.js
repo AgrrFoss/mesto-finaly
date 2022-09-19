@@ -47,11 +47,34 @@ function App() {
   }, [loggedIn]);
 
   React.useEffect(() => {
+    getInfo();
+  }, []);
+
+  function getInfo() {
+    mestoAuth.getContent()
+    .then((res) => {
+      if (res) {
+        setLoggedIn(true);
+        history.push('/');
+        setUserEmail(res.data.email);
+      } else {
+        localStorage.removeItem('token');
+        setLoggedIn(false);
+        history.push('/sing-in');
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  }
+/*
+React.useEffect(() => {
     checkToken()
   }, []);
 
   function checkToken() {
     const token = localStorage.getItem('token');
+    console.log(token)
     if (token) {
       mestoAuth.getContent(token)
         .then((res) => {
@@ -67,10 +90,10 @@ function App() {
         })
         .catch((err) => {
           console.log(err);
-        })
+        });
     }
   }
-
+*/
   function handleCardLike(card) {
     const isLiked = card.likes.some(i => i._id === currentUser._id);
     api.likeCard(card._id, isLiked)

@@ -9,6 +9,13 @@ const NotFoundError = require('./errors/not_found');
 const auth = require('./middlewares/auth');
 const { login, createUser } = require('./controllers/users');
 
+const allowedCors = [
+  'http://orlov.gregori.nomoredomains.sbs',
+  'https://orlov.gregori.nomoredomains.sbs',
+  'http://localhost:3000',
+  'https://localhost:3000',
+];
+
 const { PORT = 4000 } = process.env;
 
 const app = express();
@@ -19,7 +26,10 @@ app.use(cookieParser());
 app.use(requestLogger);
 
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
+  const { origin } = req.headers;
+  if (allowedCors.includes(origin)) {
+    res.header('Access-Control-Allow-Origin', origin);
+  }
   const { method } = req;
   const requestHeaders = req.headers['access-control-request-headers'];
 
