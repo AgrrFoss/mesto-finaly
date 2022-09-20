@@ -37,6 +37,7 @@ function App() {
       Promise.all([api.getUserInfo(), api.getCard()])
         .then((res) => {
           const [userInfo, cards] = res
+          console.log(userInfo)
           setCurrentUser(userInfo);
           setCards(cards);
         })
@@ -67,6 +68,7 @@ function App() {
       console.log(err);
     });
   }
+
 /*
 React.useEffect(() => {
     checkToken()
@@ -177,6 +179,7 @@ React.useEffect(() => {
   function handleSingOut() {
     mestoAuth.signOut()
     .then ((res) => {
+      setCurrentUser({});
       localStorage.removeItem('token');
       history.push('/sing-in');
     });
