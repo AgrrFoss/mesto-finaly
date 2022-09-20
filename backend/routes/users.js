@@ -34,7 +34,7 @@ userRouter.patch(
   celebrate({
     body: Joi.object().keys({
       // eslint-disable-next-line no-useless-escape
-      avatar: Joi.string().min(4).pattern(/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?#?$/),
+      avatar: Joi.string().min(4).pattern(/^(https?:\/\/)([\w\.]+)\.[a-z{2, 6}]/),
     }),
   }),
   updateAvatar,

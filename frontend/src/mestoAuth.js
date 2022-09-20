@@ -9,8 +9,9 @@ export const register = (email, password) => {
         body: JSON.stringify({ password: password, email: email })
     })
         .then((res) => {
+            console.log(res)
             try {
-                if (res.status === 201) {
+                if (res.status === 200) {
                     return res.JSON()
                 }
             } catch (e) {
@@ -31,6 +32,7 @@ export const authorize = (email, password) => {
         headers: {
             "Content-Type": "application/json"
         },
+        credentials: 'include',
         body: JSON.stringify({
             password: password,
             email: email
@@ -96,3 +98,14 @@ export const getContent = (token) => {
         })
 }
 */
+export const signOut = () => {
+    return fetch(`${BASE_URL}/signout`, {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json"
+        },
+        credentials: 'include'
+    })
+        .then((res => res))
+        .catch(err => console.log(err))
+}

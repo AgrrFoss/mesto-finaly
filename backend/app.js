@@ -7,7 +7,7 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const NotFoundError = require('./errors/not_found');
 const auth = require('./middlewares/auth');
-const { login, createUser } = require('./controllers/users');
+const { login, createUser, signOut } = require('./controllers/users');
 
 const allowedCors = [
   'http://orlov.gregori.nomoredomains.sbs',
@@ -74,6 +74,8 @@ app.use(auth);
 app.use('/users', require('./routes/users'));
 
 app.use('/cards', require('./routes/cards'));
+
+app.use('/signout', signOut);
 
 app.use((req, res, next) => {
   const err = new NotFoundError('Страница не найдена.');

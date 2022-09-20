@@ -100,6 +100,13 @@ module.exports.login = (req, res, next) => {
     .catch(next);
 };
 
+module.exports.signOut = (req, res, next) => {
+  res.clearCookie('jwt')
+    .send({ message: 'cookies удалены' })
+    .end();
+  next();
+};
+
 module.exports.updateUserInfo = (req, res, next) => {
   const { name, about } = req.body;
   User.findByIdAndUpdate(

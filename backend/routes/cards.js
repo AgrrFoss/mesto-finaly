@@ -12,7 +12,7 @@ cardsRouter.post(
     body: Joi.object().keys({
       name: Joi.string().required().min(2).max(30),
       // eslint-disable-next-line no-useless-escape
-      link: Joi.string().required().min(7).pattern(/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?#?$/),
+      link: Joi.string().required().min(7).pattern(/^(https?:\/\/)([\w\.]+)\.[a-z{2, 6}]/),
     }),
   }),
   createCard,
