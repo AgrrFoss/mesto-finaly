@@ -1,13 +1,3 @@
-/*class Api {
-    constructor (url, token) {
-        this._url = url;
-        this._token = token;
-        this._headers = {
-            authorization: this._token,
-            'Content-Type': 'application/json'
-        }
-    }
-*/
 class Api {
     constructor (url) {
         this._url = url;
@@ -94,7 +84,7 @@ class Api {
     }
     
 }
-// const api = new Api ('http://localhost:4000', '5df93b18-5437-4244-a6a2-8b097c8cb05f');
+
 const api = new Api ('http://localhost:4000');
 
 export default api;

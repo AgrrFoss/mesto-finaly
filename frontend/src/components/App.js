@@ -69,33 +69,6 @@ function App() {
     });
   }
 
-/*
-React.useEffect(() => {
-    checkToken()
-  }, []);
-
-  function checkToken() {
-    const token = localStorage.getItem('token');
-    console.log(token)
-    if (token) {
-      mestoAuth.getContent(token)
-        .then((res) => {
-          if (res) {
-            setLoggedIn(true);
-            history.push('/');
-            setUserEmail(res.data.email);
-          } else {
-            localStorage.removeItem('token');
-            setLoggedIn(false);
-            history.push('/sing-in');
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-  }
-*/
   function handleCardLike(card) {
     const isLiked = card.likes.some(i => i === currentUser._id);
     api.likeCard(card._id, isLiked)
@@ -217,9 +190,6 @@ React.useEffect(() => {
         openErrorInfoTooltip()
       })
   }
-
-
-
 
   return (
     <CurrentUserContext.Provider value={currentUser}>

@@ -47,28 +47,7 @@ export const authorize = (email, password) => {
         })
         .catch(err => console.log(err))
 }
-/*
-export const authorize = (email, password) => {
-    return fetch(`${BASE_URL}/signin`, {
-        method: 'POST',
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            password: password,
-            email: email
-        })
-    })
-        .then((response => response.json()))
-        .then((data) => {
-            if (data.token) {
-                localStorage.setItem('token', data.token);
-                return data;
-            }
-        })
-        .catch(err => console.log(err))
-}
-*/
+
 export const getContent = () => {
     return fetch(`${BASE_URL}/users/me`, {
         method: 'GET',
@@ -82,22 +61,7 @@ export const getContent = () => {
             return data;
         })
 }
-/*
-export const getContent = (token) => {
-    return fetch(`${BASE_URL}/users/me`, {
-        method: 'GET',
-        headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${token}`,
-        },
-        credentials: 'include'
-    })
-        .then(res => res.json())
-        .then((data) => {
-            return data;
-        })
-}
-*/
+
 export const signOut = () => {
     return fetch(`${BASE_URL}/signout`, {
         method: 'POST',
