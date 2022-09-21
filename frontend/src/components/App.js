@@ -39,6 +39,7 @@ function App() {
           const [userInfo, cards] = res
           console.log(userInfo)
           setCurrentUser(userInfo);
+          setUserEmail(userInfo.email);
           setCards(cards);
         })
         .catch(err => {
@@ -57,7 +58,6 @@ function App() {
       if (res) {
         setLoggedIn(true);
         history.push('/');
-        setUserEmail(res.email);
       } else {
         localStorage.removeItem('token');
         setLoggedIn(false);
@@ -180,6 +180,7 @@ React.useEffect(() => {
     mestoAuth.signOut()
     .then ((res) => {
       setCurrentUser({});
+      setLoggedIn(false);
       localStorage.removeItem('token');
       history.push('/sing-in');
     });
